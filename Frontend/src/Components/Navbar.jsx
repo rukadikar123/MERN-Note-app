@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import SearchBar from "./SearchBar";
 import ProfileInfo from "./ProfileInfo";
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const navigate=useNavigate()
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -13,9 +16,13 @@ function Navbar() {
     setSearchQuery("");
   };
 
+  const onLogout=()=>{
+      navigate('/login')
+  }
+
   return (
     <>
-      <div className="bg-slate-300 flex items-center justify-between w-full px-6 py-3 shadow-md">
+      <div className="bg-slate-300 flex items-center justify-between w-full px-6 py-4 shadow-md">
         <h1 className="text-slate-500 text-3xl font-medium">Notes</h1>
         <SearchBar
           value={searchQuery}
@@ -23,7 +30,7 @@ function Navbar() {
           handlesearch={handlesearch}
           onClearSearch={onClearSearch}
         />
-        <ProfileInfo />
+        <ProfileInfo onLogout={onLogout} />
       </div>
     </>
   );
