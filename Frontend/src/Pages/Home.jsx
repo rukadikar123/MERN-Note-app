@@ -16,7 +16,11 @@ function Home() {
     <>
       <div className="container mx-auto ">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
-          <NoteCard isPinned={isPinned} setIsPinned={setIsPinned} />
+          <NoteCard isPinned={isPinned} setIsPinned={setIsPinned} 
+            onEdit={()=>{}}
+            onDelete={()=>{}}
+            onPinNote={()=>{}}
+          />
           <NoteCard />
           <NoteCard />
           <NoteCard />

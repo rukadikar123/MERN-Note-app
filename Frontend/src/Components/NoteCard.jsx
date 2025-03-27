@@ -6,7 +6,7 @@ import { RiUnpinFill } from "react-icons/ri";
 
 
 
-function NoteCard({isPinned, setIsPinned,}) {
+function NoteCard({isPinned, setIsPinned, onEdit, onDelete, onPinNote}) {
   return (
     <>
         <div className="flex flex-col gap-4  p-4 bg-slate-200 cursor-pointer h-[30vh] hover:shadow-xl transition-all ease-in-out border-slate-400 rounded-sm">

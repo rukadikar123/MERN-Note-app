@@ -7,10 +7,13 @@ function AddEditNotes({ onClose, noteData, type }) {
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
 
+
+  // edit Note
   const editNote=async()=>{
 
   }
-
+   
+  //add note
   const addNewNote=async()=>{
 
   }
@@ -56,7 +59,7 @@ function AddEditNotes({ onClose, noteData, type }) {
           placeholder="content....."
           value={content}
           onChange={(e) => setContent(e.target.value)}
-        ></textarea>
+        />
       </div>
       <div>
         <label className="text-lg text-red-400 uppercase font-medium">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import SearchBar from "./SearchBar";
 import ProfileInfo from "./ProfileInfo";
 
@@ -23,7 +23,7 @@ function Navbar() {
   return (
     <>
       <div className="bg-slate-300 flex items-center justify-between w-full px-6 py-4 shadow-md">
-        <h1 className="text-slate-500 text-3xl font-medium">Notes</h1>
+        <Link to="/" className="text-slate-500 text-3xl font-medium">Notes</Link>
         <SearchBar
           value={searchQuery}
           handleChange={handleChange}
