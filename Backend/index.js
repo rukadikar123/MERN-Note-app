@@ -2,8 +2,9 @@ import express, { urlencoded } from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
-import authRouter from './Routes/user.routes.js'
 import cors from 'cors'
+import authRouter from './Routes/user.routes.js'
+import noteRouter from './Routes/note.routes.js'
 
 dotenv.config()
 
@@ -27,7 +28,7 @@ app.use(cors({origin:"*"}))
 
 // Routes
 app.use('/api/auth',authRouter)
-
+app.use('/api/note', noteRouter)
 
 
 

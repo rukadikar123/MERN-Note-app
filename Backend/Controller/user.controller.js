@@ -1,14 +1,14 @@
 import { User } from "../Models/user.model.js"
 import bcryptjs from 'bcryptjs'
-import jwt from 'jsonwebtoken'
  
 export const signup=async(req, res)=>{
-    try {
-        const {userName, email, password}=req.body
+    const {userName, email, password}=req.body
 
         if(!userName || !email || !password){
            throw new Error("All fields required")
         }
+
+    try {
 
         const isUserExist=await User.findOne({email})
 
@@ -19,7 +19,7 @@ export const signup=async(req, res)=>{
             })
         }
 
-        const hashedPassword=await bcryptjs.hashSync(password, 10)
+        const hashedPassword=bcryptjs.hashSync(password, 10)
 
         const newUser=await User.create({
             userName:userName.toLowerCase(),
@@ -44,13 +44,13 @@ export const signup=async(req, res)=>{
 }
 
 export const login=async(req, res)=>{
-    try {
-
-        const {email, password}=req.body;
+    const {email, password}=req.body;
 
          if(!email || !password){
                 throw new Error("All fields required")
          } 
+         
+    try {
 
          const isEmailExist=await User.findOne({email})
          if(!isEmailExist){
