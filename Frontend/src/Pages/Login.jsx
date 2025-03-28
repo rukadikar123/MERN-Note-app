@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helper";
+import {useDispatch} from 'react-redux'
+import { signInFailure, signinStart, signInSuccess } from "../Redux/userSlice";
+import axios from 'axios'
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +13,8 @@ function Login() {
   const [error, setError] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
 
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
 
   const handleLogin=async(e)=>{
     e.preventDefault()
@@ -24,8 +29,23 @@ function Login() {
       return
     }
     setError('')
+   
     // login api
+    try {
+        dispatch(signinStart)
 
+        const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`, {email, password},{withCredentials:true})
+        if(response.data.success=== false){
+          
+          
+          dispatch(signInFailure(response.data.message))
+        }
+        dispatch(signInSuccess(response.data.user))
+        console.log(response);
+        navigate('/')
+    } catch (error) {
+      dispatch(signInFailure(error.message))
+    }
   }
 
   return (

@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NoteCard from "../Components/NoteCard";
+import Navbar from '../Components/Navbar'
 import { FaPlus } from "react-icons/fa";
 import Modal from "react-modal";
 import AddEditNotes from "../Components/AddEditNotes";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const [userInfo, setUserInfo]=useState(null)
+  const {currentUser,loading, error }=useSelector(state=>state.user)
+
   const [isPinned, setIsPinned] = useState(false);
   const [openAddEditModal, setOpenAddEditModal] = useState({
     isShow: false,
@@ -12,8 +18,21 @@ function Home() {
     data: null,
   });
 
+const navigate=useNavigate()
+  useEffect(() => {
+    if(currentUser===null){
+      navigate('/login')
+    }else{
+      setUserInfo(currentUser)
+      console.log(userInfo);
+      
+    }
+  }, [])
+  
+
   return (
     <>
+    <Navbar userInfo={userInfo} />
       <div className="container mx-auto ">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
           <NoteCard isPinned={isPinned} setIsPinned={setIsPinned} 
