@@ -1,11 +1,15 @@
-import express from 'express'
+import express, { urlencoded } from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
+import authRouter from './Routes/user.routes.js'
+import cors from 'cors'
 
 dotenv.config()
 
 const app=express()
 
+// MongoDb connection
 mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("connected to mongoDB");
     
@@ -13,6 +17,17 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log(err);
     
 })
+
+// Middleware setup
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(cookieParser())
+app.use(cors({origin:"*"}))
+
+
+// Routes
+app.use('/api/auth',authRouter)
+
 
 
 
