@@ -36,12 +36,11 @@ function Login() {
 
         const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`, {email, password},{withCredentials:true})
         if(response.data.success=== false){
-          
-          
+        
           dispatch(signInFailure(response.data.message))
         }
         dispatch(signInSuccess(response.data.user))
-        console.log(response);
+
         navigate('/')
     } catch (error) {
       dispatch(signInFailure(error.message))

@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import ProfileInfo from "./ProfileInfo";
+import { useDispatch } from "react-redux";
+import { signOutFailure, signOutStart, signOutSuccess } from "../Redux/userSlice";
+import axios from "axios";
 
 function Navbar({userInfo}) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigate = useNavigate();
-
+  const dispatch=useDispatch()
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -16,8 +19,23 @@ function Navbar({userInfo}) {
     setSearchQuery("");
   };
 
-  const onLogout = () => {
-    navigate("/login");
+  const onLogout = async() => {
+    try {
+      dispatch(signOutStart())
+
+      const res=await axios.get(`${import.meta.env.VITE_BASE_URL}/api/auth/logout`,{withCredentials:true})
+
+      if(res?.data?.success === false){ 
+        dispatch(signOutFailure(res?.data?.message))
+      }
+      console.log(res.data);
+      
+      dispatch(signOutSuccess())
+
+      navigate('/login')
+    } catch (error) {
+      dispatch(signOutFailure(error.message))
+    } 
   };
 
   return (

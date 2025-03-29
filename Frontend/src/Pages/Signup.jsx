@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helper";
+import axios from "axios";
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
+
+  const navigate=useNavigate()
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -28,6 +31,23 @@ function Signup() {
       return;
     }
     setError("");
+    navigate('/login')
+
+    try {
+      const res= await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`, {userName:name,email, password},{withCredentials:true})
+      if(res.data.success===false){
+        setError(res.data.message)
+        return
+      }
+
+      setError("") 
+      navigate
+
+    } catch (error) {
+        console.log(error.message);
+        setError(error.message)
+        
+    }
   };
   return (
     <>
