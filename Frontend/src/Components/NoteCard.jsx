@@ -15,7 +15,7 @@ function NoteCard({title,date,content,tags,isPinned, onEdit, onDelete, onPinNote
           <h1 className="text-xl font-medium">{title}</h1>
           <p className="text-lg ">{moment(date).format("Do MMM YYYY")}</p>
         </div>
-        <div  >
+        <div onClick={onPinNote} >
             {
                 isPinned ?  <RiUnpinFill size={26}/> : <MdOutlinePushPin size={26}/> 
             }

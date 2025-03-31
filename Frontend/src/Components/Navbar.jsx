@@ -7,17 +7,22 @@ import { signOutFailure, signOutStart, signOutSuccess } from "../Redux/userSlice
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function Navbar({userInfo}) {
+function Navbar({userInfo, handleClearSearch, onSearchNote}) {
   const [searchQuery, setSearchQuery] = useState("");
-
+  
   const navigate = useNavigate();
   const dispatch=useDispatch()
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  const handlesearch = () => {};
+  const handlesearch = () => {
+    if(searchQuery){
+      onSearchNote(searchQuery)
+    }
+  };
   const onClearSearch = () => {
     setSearchQuery("");
+    handleClearSearch()
   };
 
   const onLogout = async() => {

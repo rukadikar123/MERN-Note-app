@@ -13,6 +13,7 @@ function Home() {
   const [userInfo, setUserInfo] = useState(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [allNotes, setAllNotes] = useState([]);
+  const [isSearch, setIsSearch]=useState(false)
 
   const [openAddEditModal, setOpenAddEditModal] = useState({
     isShow: false,
@@ -74,9 +75,54 @@ function Home() {
     }
   } 
 
+  const onSearchNote=async(query)=>{
+    try {
+      const res=await axios.get(`${import.meta.env.VITE_BASE_URL}/api/note/search`,{
+        params:{query},
+        withCredentials:true})
+      if(res.data.success===false){
+          toast.error(res.data.message)
+          return
+      }
+
+      setAllNotes(res.data.notes)
+      setIsSearch(true)
+      
+
+    } catch (error) {
+       toast.error(error.message) 
+    }
+  }
+
+  const handleClearSearch=()=>{
+    setIsSearch(false)
+    getAllNotes()
+  }
+
+
+  const updateIsPinned=async(noteData)=>{
+    const noteId=noteData._id
+
+    try {
+      const res=await axios.put(`${import.meta.env.VITE_BASE_URL}/api/note/update-note-pinned/${noteId}`, {
+        isPinned:!noteData.isPinned
+      }, {withCredentials:true})
+
+      if(res.data.success===false){
+        toast.error(res.data.message)
+        return
+      }
+
+      toast.success(res.data.message)
+      getAllNotes()
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     <>
-      <Navbar userInfo={userInfo} />
+      <Navbar userInfo={userInfo} onSearchNote={onSearchNote} handleClearSearch={handleClearSearch}/>
       <div className="container mx-auto ">
         {allNotes.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
           {allNotes?.map((note) => (
@@ -88,10 +134,10 @@ function Home() {
               isPinned={note.isPinned}
               onEdit={() => {handleEdit(note)}}
               onDelete={() => {deleteNote(note)}}
-              onPinNote={() => {}}
+              onPinNote={() => {updateIsPinned(note)}}
             /> 
           ))}
-        </div> : <p className="flex items-center justify-center mt-60 text-2xl">Ready to capture your ideas? Click Add button to start noting down.</p>}
+        </div> : <p className="flex items-center justify-center mt-60 text-2xl">{isSearch ? "oops! Note Not Found": "Ready to capture your ideas? Click Add button to start noting down."}</p>}
       </div>
       <button
         onClick={() =>
