@@ -137,7 +137,7 @@ function Home() {
               onPinNote={() => {updateIsPinned(note)}}
             /> 
           ))}
-        </div> : <p className="flex items-center justify-center mt-60 text-2xl">{isSearch ? "oops! Note Not Found": "Ready to capture your ideas? Click Add button to start noting down."}</p>}
+        </div> : <p className="flex items-center justify-center mt-60 text-2xl">{isSearch ? "oops! No Note Found": "Ready to capture your ideas? Click Add button to start noting down."}</p>}
       </div>
       <button
         onClick={() =>
