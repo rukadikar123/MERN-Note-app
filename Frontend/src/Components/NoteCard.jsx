@@ -29,8 +29,8 @@ function NoteCard({title,date,content,tags,isPinned, onEdit, onDelete, onPinNote
           tags?.map((tag)=> ` #${tag} `)
       }</p>
         <div className="flex gap-2">
-            <FaEdit size={22}/>
-            <MdDelete size={24}/>
+            <FaEdit  onClick={onEdit} size={22}/>
+            <MdDelete onClick={onDelete} size={24}/>
         </div>
       </div>
     </div>

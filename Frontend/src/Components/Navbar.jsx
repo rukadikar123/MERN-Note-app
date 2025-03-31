@@ -5,6 +5,7 @@ import ProfileInfo from "./ProfileInfo";
 import { useDispatch } from "react-redux";
 import { signOutFailure, signOutStart, signOutSuccess } from "../Redux/userSlice";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Navbar({userInfo}) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,13 +28,16 @@ function Navbar({userInfo}) {
 
       if(res?.data?.success === false){ 
         dispatch(signOutFailure(res?.data?.message))
+        toast.error(res.data.message)
+        return
       }
       console.log(res.data);
-      
+      toast.success(res.data.message)
       dispatch(signOutSuccess())
 
       navigate('/login')
     } catch (error) {
+      toast.error(error.message)
       dispatch(signOutFailure(error.message))
     } 
   };

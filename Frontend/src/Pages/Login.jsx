@@ -3,9 +3,10 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helper";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { signInFailure, signinStart, signInSuccess } from "../Redux/userSlice";
-import axios from 'axios'
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,39 +14,45 @@ function Login() {
   const [error, setError] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLogin=async(e)=>{
-    e.preventDefault()
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    if(!validateEmail(email)){
-      setError("please enter valid email address")
-      return
+    if (!validateEmail(email)) {
+      setError("please enter valid email address");
+      return;
     }
 
-    if(!password){
-      setError("please enter a password")
-      return
+    if (!password) {
+      setError("please enter a password");
+      return;
     }
-    setError('')
-   
+    setError("");
+
     // login api
     try {
-        dispatch(signinStart)
+      dispatch(signinStart);
 
-        const response=await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`, {email, password},{withCredentials:true})
-        if(response.data.success=== false){
-        
-          dispatch(signInFailure(response.data.message))
-        }
-        dispatch(signInSuccess(response.data.user))
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
+        { email, password },
+        { withCredentials: true }
+      );
+      if (response.data.success === false) {
+        dispatch(signInFailure(response.data.message));
+        toast.error(response.data.message)
+      }
+      toast.success(response.data.message)
+      dispatch(signInSuccess(response.data.user));
 
-        navigate('/')
+      navigate("/");
     } catch (error) {
-      dispatch(signInFailure(error.message))
+      toast.error(error.message)
+      dispatch(signInFailure(error.message));
     }
-  }
+  };
 
   return (
     <div className="flex items-center justify-center h-[80vh] ">
@@ -77,10 +84,17 @@ function Login() {
             </div>
           </div>
           {error && <p className="text-sm text-red-400 ">{error}</p>}
-          <button className="text-lg font-medium bg-green-500 rounded-sm text-white/90 py-1 hover:bg-green-400 cursor-pointer">Login</button>
+          <button className="text-lg font-medium bg-green-500 rounded-sm text-white/90 py-1 hover:bg-green-400 cursor-pointer">
+            Login
+          </button>
           <div className="flex items-center gap-4 ">
             <p className="text-black/70">Not Registered yet?</p>
-            <Link className="text-lg text-blue-800 hover:text-blue-500" to="/signup">Create an Account</Link>
+            <Link
+              className="text-lg text-blue-800 hover:text-blue-500"
+              to="/signup"
+            >
+              Create an Account
+            </Link>
           </div>
         </form>
       </div>

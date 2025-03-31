@@ -1,21 +1,57 @@
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import TagInput from "./TagInput";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-function AddEditNotes({ onClose, noteData, type }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [tags, setTags] = useState([]);
-
+function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
+  const [title, setTitle] = useState(noteData?.title || "");
+  const [content, setContent] = useState(noteData?.content || "");
+  const [tags, setTags] = useState(noteData?.tags || []);
+  const [error, setError]=useState(null)
 
   // edit Note
   const editNote=async()=>{
+    const noteId=noteData._id
 
+    try {
+      const res= await axios.post(`${import.meta.env.VITE_BASE_URL}/api/note/edit/${noteId}`,{title , content, tags}, {withCredentials:true})
+      if(res.data.success===false){
+        setError(res.data.message)
+        toast.error(res.data.message)
+        return
+      }
+      toast.success(res.data.message)
+      getAllNotes()
+      onClose()
+
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message)
+      setError(error.message)  
+    } 
   }
    
   //add note
   const addNewNote=async()=>{
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/note/add`, {title, content, tags}, {withCredentials:true})
 
+      if(res.data.success===false){
+        console.log(res.data.message);
+        setError(res.data.message)
+        toast.error(res.data.message)
+        return
+      }
+      toast.success(res.data.message)
+      getAllNotes()
+      onClose()
+
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message)
+      setError(error.message)
+    }
   }
 
   const handleAddNote=()=>{
@@ -68,7 +104,7 @@ function AddEditNotes({ onClose, noteData, type }) {
         <TagInput tags={tags} setTags={setTags} />
       </div>
 
-      <button className="text-lg font-medium bg-blue-500 rounded-sm text-white/90 p-2 mt-4 w-full hover:bg-blue-400 cursor-pointer" onClick={handleAddNote}>Add</button>
+      <button className="text-lg font-medium bg-blue-500 rounded-sm text-white/90 p-2 mt-4 w-full hover:bg-blue-400 cursor-pointer" onClick={handleAddNote}>{type==="edit" ? "Update" : "Add"}</button>
     </div>
   );
 }

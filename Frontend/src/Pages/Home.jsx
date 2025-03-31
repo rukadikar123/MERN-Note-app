@@ -7,6 +7,7 @@ import AddEditNotes from "../Components/AddEditNotes";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Home() {
   const [userInfo, setUserInfo] = useState(null);
@@ -40,16 +41,44 @@ function Home() {
         return;
       }
       setAllNotes(res.data.notes);
+      
     } catch (error) {
       console.log(error.message);
     }
   };
 
+  const handleEdit=(noteDetails)=>{
+    setOpenAddEditModal({isShow:true, type:'edit', data:noteDetails})
+  }
+
+
+  // delete note
+
+  const deleteNote=async(data)=>{
+    const noteId=data._id
+
+    try {
+      const res=await axios.delete(`${import.meta.env.VITE_BASE_URL}/api/note/delete/${noteId}`, {withCredentials:true})
+
+      if(res.data.success===false){
+        toast.error(res.data.message)
+        return
+
+      }
+
+      toast.success(res.data.message)
+      getAllNotes()
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  } 
+
   return (
     <>
       <Navbar userInfo={userInfo} />
       <div className="container mx-auto ">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
+        {allNotes.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
           {allNotes?.map((note) => (
             <NoteCard key={note._id}
               title={note.title}
@@ -57,12 +86,12 @@ function Home() {
               content={note.content}
               tags={note.tags}
               isPinned={note.isPinned}
-              onEdit={() => {}}
-              onDelete={() => {}}
+              onEdit={() => {handleEdit(note)}}
+              onDelete={() => {deleteNote(note)}}
               onPinNote={() => {}}
             /> 
           ))}
-        </div>
+        </div> : <p className="flex items-center justify-center mt-60 text-2xl">Ready to capture your ideas? Click Add button to start noting down.</p>}
       </div>
       <button
         onClick={() =>
@@ -85,6 +114,7 @@ function Home() {
           }
           noteData={openAddEditModal.data}
           type={openAddEditModal.type}
+          getAllNotes={getAllNotes}
         />
       </Modal>
     </>

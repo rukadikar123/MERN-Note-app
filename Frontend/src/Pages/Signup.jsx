@@ -4,6 +4,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helper";
 import axios from "axios";
+import { toast } from "react-toastify";
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,13 +38,15 @@ function Signup() {
       const res= await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/signup`, {userName:name,email, password},{withCredentials:true})
       if(res.data.success===false){
         setError(res.data.message)
+        toast.error(res.data.message)
         return
       }
-
+      toast.success(res.data.message)
       setError("") 
       navigate
 
     } catch (error) {
+        toast.error(error.message)
         console.log(error.message);
         setError(error.message)
         
