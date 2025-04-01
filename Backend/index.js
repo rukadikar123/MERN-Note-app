@@ -1,4 +1,4 @@
-import express, { urlencoded } from 'express'
+import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
@@ -6,8 +6,10 @@ import cors from 'cors'
 import authRouter from './Routes/user.routes.js'
 import noteRouter from './Routes/note.routes.js'
 
+// Load environment variables from .env file into process.env
 dotenv.config()
 
+// Create an Express application instance
 const app=express()
 
 // MongoDb connection
@@ -31,7 +33,7 @@ app.use('/api/auth',authRouter)
 app.use('/api/note', noteRouter)
 
 
-
+// Start the Express server and listen on port 3000
 app.listen(3000, (req, res)=>{
     console.log("server is running on port 3000");
     

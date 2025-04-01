@@ -2,6 +2,7 @@ import {Router} from 'express'
 import { verifyToken } from '../middlewares/auth.middleware.js'
 import { addNote, deleteNote, editNote, getAllNotes, searchNote, updateNotePinned } from '../Controller/note.controller.js'
 
+// Create a new instance of an Express Router
 const router=Router()
 
 router.post("/add", verifyToken, addNote)

@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { login, logout, signup } from '../Controller/user.controller.js'
 import { verifyToken } from '../middlewares/auth.middleware.js'
 
+// Create a new instance of an Express Router
 const router=Router()
 
 router.post('/signup', signup)

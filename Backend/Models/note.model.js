@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// note schema 
 const noteSchema=new mongoose.Schema({
     title:{
         type:String,
@@ -25,5 +26,5 @@ const noteSchema=new mongoose.Schema({
 
 },{timestamps:true})
 
-
+// Create a "Note" model using the noteSchema to interact with the notes collection in MongoDB
 export const Note=mongoose.model("Note", noteSchema)
