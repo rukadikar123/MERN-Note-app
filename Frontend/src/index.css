@@ -4,3 +4,13 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none;
 }
+.clamp-3-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;  /* Limit text to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; 
+  line-height: 1.5rem;  /* Ensure spacing between lines */
+  max-height: 4.5rem;   /* Control exact space for 3 lines */
+}

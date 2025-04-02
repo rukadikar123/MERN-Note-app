@@ -124,13 +124,15 @@ function Home() {
     <>
       <Navbar userInfo={userInfo} onSearchNote={onSearchNote} handleClearSearch={handleClearSearch}/>
       <div className="container mx-auto ">
-        {allNotes.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
+        {allNotes?.length > 0 ? <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
           {allNotes?.map((note) => (
             <NoteCard key={note._id}
               title={note.title}
-              date={note.createdAt}
+              date={note.updatedAt}
               content={note.content}
               tags={note.tags}
+              bgColor={note.bgColor}
+              fontColor={note.fontColor}
               isPinned={note.isPinned}
               onEdit={() => {handleEdit(note)}}
               onDelete={() => {deleteNote(note)}}
@@ -151,7 +153,7 @@ function Home() {
       <Modal
         isOpen={openAddEditModal.isShow}
         onRequestClose={() => {}}
-        className="bg-white h-[75vh] mx-auto mt-24 p-2 overflow-auto border border-slate-400 rounded-md w-[50%]"
+        className="bg-white h-[83vh] mx-auto mt-14 p-2 overflow-auto border border-slate-400 rounded-md w-[60%]"
         contentLabel=""
       >
         <AddEditNotes

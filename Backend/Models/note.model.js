@@ -18,6 +18,14 @@ const noteSchema=new mongoose.Schema({
         type:Boolean,
         default:false
     },
+    bgColor:{
+        type:String,
+        default:"white"
+    },
+    fontColor:{
+        type:String,
+        default:"black"
+    },
     userId:{
         type:String,
         required:true

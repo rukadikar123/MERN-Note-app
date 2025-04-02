@@ -3,11 +3,11 @@ import { Note } from "../Models/note.model.js";
 // Controller to handle adding a new note
 export const addNote = async (req, res) => {
   // Extract note details (title, content, tags) from the request body
-  const { title, content, tags } = req.body;
+  const { title, content, tags, bgColor, fontColor } = req.body;
   // Extract the logged-in user's ID from the request object
   const { id } = req.user;
 
-  if (!title || !content || !tags) {
+  if (!title || !content || !tags, !bgColor || !fontColor) {
     throw new Error("All fields required");
   }
 
@@ -17,6 +17,8 @@ export const addNote = async (req, res) => {
       title,
       content,
       tags: tags || [],
+      bgColor,
+      fontColor,
       userId: id,
     });
 
@@ -51,8 +53,8 @@ export const editNote = async (req, res) => {
   }
 
   // Extract note details from the request body
-  const { title, content, tags, isPinned } = req.body;
-  if (!title && !content && !tags) {
+  const { title, content, tags, isPinned, bgColor, fontColor } = req.body;
+  if (!title && !content && !tags && !bgColor && !fontColor) {
     throw new Error("No changes Provided");
   }
 
@@ -69,6 +71,12 @@ export const editNote = async (req, res) => {
     }
     if (isPinned) {
       note.isPinned = isPinned;
+    }
+    if (bgColor) {
+      note.bgColor = bgColor;
+    }
+    if (fontColor) {
+      note.fontColor = fontColor;
     }
 
     // Save the updated note to the database
