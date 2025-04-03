@@ -29,7 +29,7 @@ function NoteCard({
             <p className="text-sm ">{moment(date).format("Do MMM YYYY")}</p>
           </div>
           <div onClick={onPinNote}>
-            {isPinned ? (
+            {isPinned ? ( 
               <RiUnpinFill size={26} />
             ) : (
               <MdOutlinePushPin size={26} />

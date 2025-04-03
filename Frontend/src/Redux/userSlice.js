@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    currentUser:null,
+    currentUser: JSON.parse(localStorage.getItem("user")) || null,
     error:null,
     loading:false   
 }
@@ -14,9 +14,13 @@ const userSlice=createSlice({
             state.loading=true
         },
         signInSuccess:(state,action)=>{
-            state.currentUser=action.payload
-            state.loading=false
-            state.error=null
+            const expirationTime = Date.now() + 20 * 1000; // ✅ Set expiry for 4 hours
+            const userWithExpiry = { ...action.payload, expiry: expirationTime };
+
+            state.currentUser = userWithExpiry;
+            state.loading = false;
+            state.error = null;
+            localStorage.setItem("user", JSON.stringify(userWithExpiry));
         },
         signInFailure:(state, action)=>{
             state.error=action.payload
@@ -29,6 +33,7 @@ const userSlice=createSlice({
             state.currentUser=null
             state.loading=false
             state.error=null
+            localStorage.removeItem("user");
         },
         signOutFailure:(state, action)=>{
             state.error=action.payload

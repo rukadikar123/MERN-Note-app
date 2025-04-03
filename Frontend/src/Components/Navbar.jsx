@@ -40,6 +40,7 @@ function Navbar({userInfo, handleClearSearch, onSearchNote}) {
       toast.success(res.data.message)
       dispatch(signOutSuccess())
 
+      
       navigate('/login')
     } catch (error) {
       toast.error(error.message)
