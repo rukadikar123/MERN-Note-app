@@ -3,14 +3,12 @@ import Home from "./Pages/Home";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import { ToastContainer  } from 'react-toastify';
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { useEffect } from "react";
-import { signInSuccess, signOutSuccess } from "./Redux/userSlice";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
