@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("AccessToken"));
     if (storedUser) {
-      dispatch(getProfile(storedUser));  // ✅ Restore user in Redux
+      dispatch(getProfile(storedUser)); // ✅ Restore user in Redux
     }
   }, [dispatch]);
 
@@ -32,7 +32,10 @@ function App() {
               </UserProtectWrapper>
             }
           />
-          <Route path="/login" element={currentUser ? <Navigate to="/" replace /> : <Login />} />
+          <Route
+            path="/login"
+            element={currentUser ? <Navigate to="/" replace /> : <Login />}
+          />
 
           <Route path="/signup" element={<Signup />} />
         </Routes>

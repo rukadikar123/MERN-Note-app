@@ -9,16 +9,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [email, setEmail] = useState(""); // Stores email input
+  const [password, setPassword] = useState(""); // Stores password input
+  const [error, setError] = useState(""); // Stores validation errors
+  const [isShowPassword, setIsShowPassword] = useState(false); // Controls password visibility
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Function to handle user login
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents default form submission behavior
 
     if (!validateEmail(email)) {
       setError("please enter valid email address");
@@ -29,39 +30,40 @@ function Login() {
       setError("please enter a password");
       return;
     }
-    setError("");
+    setError(""); // Reset error message if inputs are valid
 
     // login api
     try {
-      dispatch(signinStart);
-      
-
+      dispatch(signinStart); // Dispatch action to indicate login process started
+      // API request to login endpoint
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         { email, password },
         { withCredentials: true }
       );
       if (response.data.success === false) {
-        dispatch(signInFailure(response.data.message));
-        toast.error(response.data.message)
+        dispatch(signInFailure(response.data.message)); // Dispatch failure action with error message
+        toast.error(response.data.message); // Show error notification
       }
-      toast.success(response.data.message)
-      dispatch(signInSuccess(response.data.user));
+      toast.success(response.data.message);
+      dispatch(signInSuccess(response.data.user)); // Dispatch success action with user data
 
-      navigate("/");
+      navigate("/"); // Redirect user to home page after successful login
     } catch (error) {
-      toast.error(error.message)
-      dispatch(signInFailure(error.message));
+      toast.error(error.message);
+      dispatch(signInFailure(error.message)); // Dispatch failure action with error message
     }
   };
 
   return (
     <div className="flex items-center justify-center h-[80vh] ">
+       {/* Login form container */}
       <div className=" p-6 bg-slate-200 w-1/3">
         <form onSubmit={handleLogin} className="flex flex-col gap-8">
           <h3 className="text-center text-3xl font-medium text-slate-700">
             Login
           </h3>
+          {/* Email Input */}
           <input
             className="w-full text-sm  border-2 bg-slate-100 border-slate-300 outline-none rounded-md py-2 px-2"
             type="text"
@@ -70,6 +72,7 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className="flex items-center border-2 rounded-md px-1  bg-slate-100 border-slate-300 ">
+             {/* Password Input with Show/Hide Feature */}
             <input
               className="w-full text-sm    outline-none  py-2 px-2 appearance-none"
               type={isShowPassword ? "text" : "password"}
@@ -77,6 +80,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {/* Show/Hide Password Icon */}
             <div
               onClick={() => setIsShowPassword(!isShowPassword)}
               className={`cursor-pointer ${password ? "block" : "hidden"}`}
@@ -84,10 +88,13 @@ function Login() {
               {isShowPassword ? <FaEyeSlash size={25} /> : <FaEye size={25} />}
             </div>
           </div>
+            {/* Display error message if exists */}
           {error && <p className="text-sm text-red-400 ">{error}</p>}
+          {/* Login Button */}
           <button className="text-lg font-medium bg-green-500 rounded-sm text-white/90 py-1 hover:bg-green-400 cursor-pointer">
             Login
           </button>
+            {/* Sign-up Link */}
           <div className="flex items-center gap-4 ">
             <p className="text-black/70">Not Registered yet?</p>
             <Link

@@ -8,29 +8,37 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function Navbar({userInfo, handleClearSearch, onSearchNote}) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");     // State for search input
   
   const navigate = useNavigate();
   const dispatch=useDispatch()
+
+  // Handles search input change
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  // Executes search when triggere
   const handlesearch = () => {
     if(searchQuery){
       onSearchNote(searchQuery)
     }
   };
+  // Clears search input and triggers parent function to reset search results
   const onClearSearch = () => {
     setSearchQuery("");
     handleClearSearch()
   };
 
+    // Handles user logout
   const onLogout = async() => {
     try {
-      dispatch(signOutStart())
+      dispatch(signOutStart())    // Dispatching sign-out start action
 
+            // API call to logout
       const res=await axios.get(`${import.meta.env.VITE_BASE_URL}/api/auth/logout`,{withCredentials:true})
 
+      // If logout fails, show an error message
       if(res?.data?.success === false){ 
         dispatch(signOutFailure(res?.data?.message))
         toast.error(res.data.message)
@@ -38,10 +46,10 @@ function Navbar({userInfo, handleClearSearch, onSearchNote}) {
       }
       console.log(res.data);
       toast.success(res.data.message)
-      dispatch(signOutSuccess())
+      dispatch(signOutSuccess())     // Dispatch sign-out success action
 
       
-      navigate('/login')
+      navigate('/login')               // Redirect to login page
     } catch (error) {
       toast.error(error.message)
       dispatch(signOutFailure(error.message))
@@ -51,15 +59,18 @@ function Navbar({userInfo, handleClearSearch, onSearchNote}) {
   return (
     <>
       <div className="bg-slate-300 flex items-center justify-between w-full px-6 py-4 shadow-md">
+        {/* App title */}
         <Link to="/" className="text-slate-500 text-3xl font-medium">
           Notes
         </Link>
+        {/* Search Bar */}
         <SearchBar
           value={searchQuery}
           handleChange={handleChange}
           handlesearch={handlesearch}
           onClearSearch={onClearSearch}
         />
+        {/* User Profile & Logout */}
         <ProfileInfo userInfo={userInfo} onLogout={onLogout} />
       </div>
     </>
