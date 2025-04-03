@@ -38,6 +38,7 @@ const userSlice=createSlice({
         },
         getProfile:(state, action)=>{
             state.currentUser=action.payload
+            localStorage.setItem("AccessToken",JSON.stringify(state.currentUser))
         }
     }
 })

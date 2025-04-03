@@ -27,9 +27,9 @@ function UserProtectWrapper({ children }) {
         }
       }).catch((err) => {
         console.error("Auth check failed:", err);
-        localStorage.removeItem("AccessToken"); // ✅ Remove expired token
-        dispatch(signOutSuccess()); // ✅ Clear Redux state
-        navigate("/login"); // ✅ Redirect if session is invalid
+        localStorage.removeItem("AccessToken"); //  Remove expired token
+        dispatch(signOutSuccess()); //  Clear Redux state
+        navigate("/login"); //  Redirect if session is invalid
       });
   }, [navigate, dispatch, token]);
 
