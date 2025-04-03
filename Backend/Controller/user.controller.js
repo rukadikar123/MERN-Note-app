@@ -106,6 +106,16 @@ export const login = async (req, res) => {
   }
 };
 
+export const getUserProfile=async(req,res)=>{
+  const user=req.user
+  
+  res.status(200).json({
+    success:true,
+    user
+  })
+}
+
+
 // Logout Controller
 export const logout = async (req, res) => {
   try {

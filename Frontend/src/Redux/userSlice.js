@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    currentUser: JSON.parse(localStorage.getItem("user")) || null,
+    currentUser:null,
     error:null,
     loading:false   
 }
@@ -14,13 +14,10 @@ const userSlice=createSlice({
             state.loading=true
         },
         signInSuccess:(state,action)=>{
-            const expirationTime = Date.now() + 20 * 1000; // ✅ Set expiry for 4 hours
-            const userWithExpiry = { ...action.payload, expiry: expirationTime };
-
-            state.currentUser = userWithExpiry;
+            state.currentUser = action.payload;
             state.loading = false;
             state.error = null;
-            localStorage.setItem("user", JSON.stringify(userWithExpiry));
+            localStorage.setItem("AccessToken",JSON.stringify(state.currentUser))
         },
         signInFailure:(state, action)=>{
             state.error=action.payload
@@ -33,15 +30,18 @@ const userSlice=createSlice({
             state.currentUser=null
             state.loading=false
             state.error=null
-            localStorage.removeItem("user");
+            localStorage.removeItem("AccessToken")
         },
         signOutFailure:(state, action)=>{
             state.error=action.payload
             state.loading=false
         },
+        getProfile:(state, action)=>{
+            state.currentUser=action.payload
+        }
     }
 })
 
-export const {signinStart, signInSuccess, signInFailure, signOutStart, signOutSuccess, signOutFailure}=userSlice.actions
+export const {signinStart, signInSuccess, signInFailure, signOutStart, signOutSuccess, signOutFailure, getProfile}=userSlice.actions
 
 export default userSlice.reducer
