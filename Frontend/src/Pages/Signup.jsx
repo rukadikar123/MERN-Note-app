@@ -61,10 +61,10 @@ function Signup() {
   return (
     <>
       <div className="flex items-center justify-center h-[80vh] ">
-        <div className=" p-6 bg-slate-200 w-1/3">
+        <div className=" md:p-6 p-4 bg-slate-200 w-[85%] md:w-1/3">
           {/* Signup form */}
           <form onSubmit={handleSignup} className="flex flex-col gap-8">
-            <h3 className="text-center text-3xl font-medium text-slate-700">
+            <h3 className="text-center md:text-3xl text-2xl font-medium text-slate-700">
               Register
             </h3>
             {/* Input field for Name */}

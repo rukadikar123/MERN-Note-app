@@ -14,3 +14,17 @@ input::-ms-clear {
   line-height: 1.5rem;  /* Ensure spacing between lines */
   max-height: 4.5rem;   /* Control exact space for 3 lines */
 }
+
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out forwards;
+}

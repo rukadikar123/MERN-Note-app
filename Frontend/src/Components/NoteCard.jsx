@@ -23,12 +23,12 @@ function NoteCard({
       {/* Note Card Container */}
       <div onClick={onClick}
         style={{ backgroundColor: bgColor, color: fontColor }}
-        className="flex flex-col justify-around  p-4 space-y-4 border-2 w-full cursor-pointer h-[30vh] hover:shadow-xl transition-all ease-in-out border-slate-400 rounded-sm"
+        className="flex flex-col justify-around p-2 md:p-4 space-y-4 border-2 w-full cursor-pointer h-[30vh] hover:shadow-xl transition-all ease-in-out border-slate-400 rounded-sm"
       >
         {/* Title and Pin Section */}
         <div className="flex items-center justify-between border-gray-400 border-b pb-2">
           <div className=" flex flex-col space-y-1">
-            <h1 className="text-2xl font-bold">{title}</h1>
+            <h1 className="md:text-2xl text-xl font-bold">{title}</h1>
             <p className="text-sm ">{moment(date).format("Do MMM YYYY")}</p>
           </div>
           {/* Pin and Unpin Button */}

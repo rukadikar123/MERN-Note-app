@@ -177,7 +177,7 @@ function Home() {
       {/* Main Container for displaying notes and Modals*/}
       <div className="container mx-auto ">
         {allNotes?.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 ">
+          <div className="grid grid-cols-1 md:p-0 p-4 md:grid-cols-4 gap-6 mt-4 md:mt-8 ">
             {allNotes?.map((note) => (
               <NoteCard
                 key={note._id}
@@ -203,7 +203,7 @@ function Home() {
           </div>
         ) : (
           // Message to show when no notes are found
-          <p className="flex items-center justify-center mt-60 text-2xl">
+          <p className="flex items-center justify-center mt-60 text-lg md:text-2xl">
             {isSearch
               ? "oops! No Note Found"
               : "Ready to capture your ideas? Click Add button to start noting down."}
@@ -215,7 +215,7 @@ function Home() {
         onClick={() =>
           setOpenAddEditModal({ isShow: true, type: "add", data: null })
         }
-        className=" font-medium bg-blue-700 rounded-xl text-white/90 p-5 absolute bottom-10 right-20 hover:bg-blue-500 cursor-pointer"
+        className=" font-medium bg-blue-700 rounded-xl text-white/90 p-2 md:p-5 absolute bottom-6 md:bottom-10 right-8 md:right-20 hover:bg-blue-500 cursor-pointer"
       >
         <FaPlus size={30} />
       </button>
@@ -223,7 +223,7 @@ function Home() {
       <Modal
         isOpen={openAddEditModal.isShow}
         onRequestClose={() => {}}
-        className="bg-white h-[83vh] mx-auto mt-14 p-2 overflow-auto border border-slate-400 rounded-md w-[60%]"
+        className="bg-white md:h-[83vh] h-[70vh] mx-auto mt-14 p-2 overflow-auto border border-slate-400 rounded-md w-[85%] md:w-[60%]"
         contentLabel=""
       >
         <AddEditNotes
