@@ -16,11 +16,12 @@ function NoteCard({
   onPinNote,
   bgColor,
   fontColor,
+  onClick
 }) {
   return (
     <>
       {/* Note Card Container */}
-      <div
+      <div onClick={onClick}
         style={{ backgroundColor: bgColor, color: fontColor }}
         className="flex flex-col justify-around  p-4 space-y-4 border-2 w-full cursor-pointer h-[30vh] hover:shadow-xl transition-all ease-in-out border-slate-400 rounded-sm"
       >

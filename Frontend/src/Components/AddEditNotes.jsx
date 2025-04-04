@@ -111,7 +111,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
         <input
           type="text"
           className="text-md  ml-4 text-slate-800 outline-none"
-          placeholder="wake up at 7 am"
+          placeholder="Your Title here"
           value={title}
           required
           onChange={(e) => setTitle(e.target.value)}

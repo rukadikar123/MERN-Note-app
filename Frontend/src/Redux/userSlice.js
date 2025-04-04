@@ -38,6 +38,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = null;
       localStorage.removeItem("AccessToken"); // Remove token from localStorage
+      localStorage.removeItem("noteInfo"); 
     },
     // Triggered when sign-out fails
     signOutFailure: (state, action) => {

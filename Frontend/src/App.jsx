@@ -7,10 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import UserProtectWrapper from "./Components/UserProtectWrapper";
 import { useEffect } from "react";
 import { getProfile } from "./Redux/userSlice";
+import NoteInfo from "./Pages/NoteInfo";
 
 function App() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+
+  
 
   // Restore user from LocalStorage on page load
   useEffect(() => {
@@ -38,6 +41,7 @@ function App() {
           />
 
           <Route path="/signup" element={<Signup />} />
+          <Route path="/noteInfo" element={<NoteInfo   />} />
         </Routes>
         <ToastContainer position="top-center" />
       </BrowserRouter>

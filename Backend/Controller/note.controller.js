@@ -178,6 +178,20 @@ export const updateNotePinned = async (req, res) => {
   }
 };
 
+export const getNoteInfo=async(req, res)=>{
+  const {noteId}=req.params
+
+  const note=await Note.findById(noteId)
+  if(!note){
+    throw new Error("Note not found")
+  }
+
+  res.status(200).json({
+    success:true,
+    note
+  })
+}
+
 // controller to Search a note
 export const searchNote = async (req, res) => {
   // Extract the 'query' parameter from the request query string
