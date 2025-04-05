@@ -7,8 +7,8 @@ export const addNote = async (req, res) => {
   // Extract the logged-in user's ID from the request object
   const { id } = req.user;
 
-  if (!title || !content || !tags, !bgColor || !fontColor) {
-    throw new Error("All fields required");
+  if (!title || !content || !tags || !bgColor || !fontColor) {
+    return res.status(400).json({ success: false, message: "All fields are required" });
   }
 
   try {
