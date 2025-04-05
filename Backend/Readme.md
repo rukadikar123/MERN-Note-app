@@ -78,7 +78,7 @@
 2. **POST** `/edit/:noteId`  
    - Description: Edit an existing note.  
    - Request Params:  
-     - `noteId`: ID of the note to edit.  
+     - [noteId]: ID of the note to edit.  
    - Request Body:  
      ```json
      {
@@ -108,10 +108,22 @@
      }
      ```
 
-4. **DELETE** `/delete/:noteId`  
+4. **GET** `/getNote/:noteId`  
+   - Description: Retrieve details of a specific note by its ID.  
+   - Request Params:  
+     - [noteId]: ID of the note to retrieve.  
+   - Response:  
+     ```json
+     {
+       "success": true,
+       "note": { "title": "string", "content": "string", "tags": ["string"], ... }
+     }
+     ```
+
+5. **DELETE** `/delete/:noteId`  
    - Description: Delete a note.  
    - Request Params:  
-     - `noteId`: ID of the note to delete.  
+     - [noteId]: ID of the note to delete.  
    - Response:  
      ```json
      {
@@ -120,10 +132,10 @@
      }
      ```
 
-5. **PUT** `/update-note-pinned/:noteId`  
+6. **PUT** `/update-note-pinned/:noteId`  
    - Description: Update the pinned status of a note.  
    - Request Params:  
-     - `noteId`: ID of the note to update.  
+     - [noteId]: ID of the note to update.  
    - Request Body:  
      ```json
      {
@@ -139,10 +151,10 @@
      }
      ```
 
-6. **GET** `/search`  
+7. **GET** `/search`  
    - Description: Search notes by title, content, or tags.  
    - Request Query:  
-     - `query`: Search term.  
+     - [query]: Search term.  
    - Response:  
      ```json
      {
