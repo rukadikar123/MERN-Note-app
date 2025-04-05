@@ -73,7 +73,7 @@ This project is a **MERN Note App** frontend built with React, Vite, and Redux. 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/MERN-Note-app.git
+   git clone https://github.com/rukadikar123/MERN-Note-app.git
    ```
 
 2. Navigate to the frontend directory:
