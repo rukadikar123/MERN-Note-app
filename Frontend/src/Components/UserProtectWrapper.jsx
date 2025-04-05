@@ -11,27 +11,30 @@ function UserProtectWrapper({ children }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // If no userData is found, redirect to login page
-    if (!userData) {
-      navigate("/login");
-    }
-    // API request to check user authentication
-    axios
-      .get(`${import.meta.env.VITE_BASE_URL}/api/auth/profile`, {
-        withCredentials: true,
-      })
-      .then((res) => {
+    const checkAuth = async () => {
+      if (!userData) {
+        navigate("/login");
+        return;
+      }
+  
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/auth/profile`, {
+          withCredentials: true,
+        });
+  
         if (res.status === 200) {
-          setIsLoading(false); // Stop loading after successful response
-          dispatch(getProfile(res.data.user)); // Store user profile in Redux
+          setIsLoading(false);
+          dispatch(getProfile(res?.data?.user));
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Auth check failed:", err);
         localStorage.removeItem("AccessToken");
-        dispatch(signOutSuccess()); //  Clear Redux state
-        navigate("/login"); // Redirect to login if authentication fails
-      });
+        dispatch(signOutSuccess());
+        navigate("/login");
+      }
+    };
+  
+    checkAuth();
   }, [navigate, dispatch, userData]); // Dependencies for the effect
 
   // Show loading message until authentication check is complete
