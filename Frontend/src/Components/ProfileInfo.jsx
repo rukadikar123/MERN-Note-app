@@ -5,7 +5,7 @@ function ProfileInfo({ onLogout, userInfo }) {
   return (
     <div className="md:flex md:flex-row  flex-col  gap-4 md:items-center">
       {/* User Avatar with Initials */}
-      <h1 className="md:text-xl text-md text-slate-700 mb-2 md:mb-0  md:w-full w-[7vw] bg-slate-200 font-medium  rounded-full px-2 md:px-3 md:py-1">
+      <h1 className="md:text-xl text-md text-slate-700 mb-2 md:mb-0 shadow-inner  md:w-full w-[7vw] bg-slate-200 font-medium  rounded-full px-2 md:px-3 md:py-1">
         {getInitials(userInfo?.userName)}
       </h1>
       {/* User Info & Logout Button */}
@@ -17,7 +17,7 @@ function ProfileInfo({ onLogout, userInfo }) {
         {/* Logout Button */}
         <button
           onClick={onLogout}
-          className="md:text-md text-sm text-white/80 bg-red-500 rounded-sm px-1 md:px-2 md:py-1 font-medium cursor-pointer"
+          className="md:text-md text-sm text-white bg-red-500 rounded-md hover:bg-red-600  transition duration-200 px-1 md:px-2 md:py-1 font-medium cursor-pointer"
         >
           Logout
         </button>

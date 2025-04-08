@@ -215,7 +215,7 @@ function Home() {
         onClick={() =>
           setOpenAddEditModal({ isShow: true, type: "add", data: null })
         }
-        className=" font-medium bg-blue-700 rounded-xl text-white/90 p-2 md:p-5 absolute bottom-6 md:bottom-10 right-8 md:right-20 hover:bg-blue-500 cursor-pointer"
+        className=" font-medium bg-blue-700 rounded-xl text-white/90 p-2 md:p-5 fixed bottom-6 md:bottom-10 right-8 md:right-12 hover:bg-blue-500 shadow-2xl ease-in-out transform hover:scale-105 transition duration-200 cursor-pointer"
       >
         <FaPlus size={30} />
       </button>
@@ -223,7 +223,7 @@ function Home() {
       <Modal
         isOpen={openAddEditModal.isShow}
         onRequestClose={() => {}}
-        className="bg-white md:h-[83vh] h-[70vh] mx-auto mt-14 p-2 overflow-auto border border-slate-400 rounded-md w-[85%] md:w-[60%]"
+        className="bg-white md:h-[83vh] h-[70vh] mx-auto mt-14 p-4 overflow-auto border shadow-lg border-slate-400 rounded-lg w-[85%] md:w-[60%] transition-all duration-300 ease-in-out"
         contentLabel=""
       >
         <AddEditNotes

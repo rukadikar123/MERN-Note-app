@@ -56,25 +56,25 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center h-[80vh] ">
+    <div className="flex items-center justify-center h-screen ">
       {/* Login form container */}
-      <div className=" md:p-6 bg-slate-200 md:w-1/3 p-4 w-[85%]">
+      <div className=" md:p-6 bg-white shadow-xl rounded-xl md:w-1/3 p-4 w-[85%]">
         <form onSubmit={handleLogin} className="flex flex-col gap-8">
-          <h3 className="text-center text-2xl md:text-3xl font-medium text-slate-700">
+          <h3 className="text-center text-2xl md:text-3xl font-medium text-gray-600">
             Login
           </h3>
           {/* Email Input */}
           <input
-            className="w-full text-sm  border-2 bg-slate-100 border-slate-300 outline-none rounded-md md:py-2 py-1 px-2"
+            className="w-full text-sm  border border-gray-300 bg-gray-100 focus:bg-white focus:outline-none focus:ring-2  focus:ring-blue-500 rounded-md md:py-2 py-1 px-2 transition duration-400"
             type="text"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div className="flex items-center border-2 rounded-md px-1  bg-slate-100 border-slate-300 ">
+          <div className="flex items-center border border-gray-300 rounded-md px-1 bg-gray-100 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-400 transition  duration-400">
             {/* Password Input with Show/Hide Feature */}
             <input
-              className="w-full text-sm    outline-none  md:py-2 py-1 px-2 appearance-none"
+              className="w-full text-sm  outline-none   md:py-2 py-1 px-2 appearance-none"
               type={isShowPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
@@ -91,7 +91,7 @@ function Login() {
           {/* Display error message if exists */}
           {error && <p className="text-sm text-red-400 ">{error}</p>}
           {/* Login Button */}
-          <button className="md:text-lg text-md font-medium bg-green-500 rounded-sm text-white/90 py-1 hover:bg-green-400 cursor-pointer">
+          <button className="md:text-lg text-md font-medium bg-blue-500 hover:bg-blue-600 transition  duration-300 rounded-md shadow-md text-white/90 py-1 cursor-pointer">
             Login
           </button>
           {/* Sign-up Link */}

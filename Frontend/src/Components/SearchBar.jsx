@@ -16,7 +16,7 @@ function SearchBar({ value, handleChange, handlesearch, onClearSearch }) {
         value={value}
         onChange={(e) => handleChange(e)}
         onKeyDown={handleKeyDown}
-        className="w-full md:text-sm text-xs border-2 bg-slate-100 border-slate-200 outline-none rounded-lg py-1 md:py-2 px-1"
+        className="w-full md:text-sm text-xs border border-slate-300 bg-slate-100 rounded-md  focus:outline-none focus:ring-2 focus:ring-blue-200 py-1 md:py-2 px-1"
         type="text"
         placeholder="Search Notes.."
       />

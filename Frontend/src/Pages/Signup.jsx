@@ -60,16 +60,16 @@ function Signup() {
   };
   return (
     <>
-      <div className="flex items-center justify-center h-[80vh] ">
-        <div className=" md:p-6 p-4 bg-slate-200 w-[85%] md:w-1/3">
+      <div className="flex items-center justify-center h-screen ">
+        <div className=" md:p-6 p-4 bg-white shadow-lg rounded-xl w-[85%] md:w-1/3">
           {/* Signup form */}
           <form onSubmit={handleSignup} className="flex flex-col gap-8">
-            <h3 className="text-center md:text-3xl text-2xl font-medium text-slate-700">
+            <h3 className="text-center md:text-3xl text-2xl font-medium text-slate-600">
               Register
             </h3>
             {/* Input field for Name */}
             <input
-              className="w-full text-sm  border-2 bg-slate-100 border-slate-300 outline-none rounded-md py-2 px-2"
+              className="w-full text-sm  border border-gray-300 bg-gray-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md py-2 px-2 transition  duration-400"
               type="text"
               placeholder="Name"
               value={name}
@@ -77,16 +77,16 @@ function Signup() {
             />
             {/* Input field for Email */}
             <input
-              className="w-full text-sm  border-2 bg-slate-100 border-slate-300 outline-none rounded-md py-2 px-2"
+              className="w-full text-sm  border border-gray-300 bg-gray-100 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400  rounded-md py-2 px-2 transition  duration-400"
               type="text"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <div className="flex items-center border-2 rounded-md px-1  bg-slate-100 border-slate-300 ">
+            <div className="flex items-center border border-gray-300 rounded-md  focus-within:bg-white bg-gray-50 focus-within:ring-2 focus-within:ring-blue-400 transition  duration-400">
               {/* Password input field with visibility toggle */}
               <input
-                className="w-full text-sm    outline-none  py-2 px-2 appearance-none"
+                className="w-full text-sm   outline-none  py-2 px-2 appearance-none"
                 type={isShowPassword ? "text" : "password"}
                 placeholder="Password"
                 value={password}
@@ -94,7 +94,9 @@ function Signup() {
               />
               <div
                 onClick={() => setIsShowPassword(!isShowPassword)}
-                className={`cursor-pointer ${password ? "block" : "hidden"}`}
+                className={`cursor-pointer pr-1 ${
+                  password ? "block" : "hidden"
+                }`}
               >
                 {isShowPassword ? (
                   <FaEyeSlash size={25} />
@@ -106,7 +108,7 @@ function Signup() {
             {/* Display validation errors if any */}
             {error && <p className="text-sm text-red-400 ">{error}</p>}
             {/* Signup button */}
-            <button className="text-lg font-medium bg-green-500 rounded-sm text-white/90 py-1 hover:bg-green-400 cursor-pointer">
+            <button className="text-lg font-medium bg-blue-500 hover:bg-blue-600 transition  duration-300 rounded-md text-white/90 shadow-md py-1 cursor-pointer">
               Signup
             </button>
             {/* Link to navigate to login if user already has an account */}
