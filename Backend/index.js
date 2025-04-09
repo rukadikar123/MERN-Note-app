@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.disable('x-powered-by'); // just extra cleanliness
 
 // Routes
 app.use("/api/auth", authRouter);
