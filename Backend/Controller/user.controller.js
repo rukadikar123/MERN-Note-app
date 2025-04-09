@@ -97,7 +97,7 @@ export const login = async (req, res) => {
 
     // Send a successful login response with the user data
     res.status(200).json({
-      succes: true,
+      success: true,
       user: isEmailExist,
       message: "Login successful",
       token,
