@@ -18,7 +18,7 @@ function UserProtectWrapper({ children }) {
       }
   
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/auth/profile`, {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/profile`, {
           withCredentials: true,
         });
   

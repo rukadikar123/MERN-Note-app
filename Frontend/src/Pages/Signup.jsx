@@ -39,7 +39,7 @@ function Signup() {
     try {
       // Sending signup request to backend
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/auth/signup`,
+        `${import.meta.env.VITE_BASE_URL}/auth/signup`,
         { userName: name, email, password },
         { withCredentials: true }
       );
