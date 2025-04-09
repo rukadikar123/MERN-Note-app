@@ -1,7 +1,7 @@
-# Dockerfile for NGINX
+# Inside Frontend/Dockerfile
 FROM node:18 AS builder
 WORKDIR /app
-COPY Frontend/ .
+COPY . .
 RUN npm install && npm run build
 
 FROM nginx:alpine
