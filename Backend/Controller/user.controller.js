@@ -87,7 +87,9 @@ export const login = async (req, res) => {
     // Store the access token in an HTTP-only cookie
     res.cookie("accessToken", token, {
       httpOnly: true, // Cookie cannot be accessed by JavaScript (prevents XSS attacks)
-      maxAge: 4 * 60 * 60 * 1000, // 4 hours
+      secure: true,
+      sameSite: "None",
+      maxAge: 8 * 60 * 60 * 1000, // 4 hours
     });
 
     // Remove the password field from the user object before sending the response
