@@ -29,7 +29,9 @@ app.use(cookieParser());
 
 app.use(
     cors({
-      origin: "https://mern-note-app-1-1cgt.onrender.com", // frontend domain
+      origin: ["https://mern-note-app-1-1cgt.onrender.com",
+        "https://mern-note-app-2.onrender.com"
+        ], // frontend domain
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
