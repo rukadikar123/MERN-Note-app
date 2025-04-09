@@ -27,7 +27,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.disable('x-powered-by'); // just extra cleanliness
+app.use(
+    cors({
+      origin: "https://mern-note-app-1-1cgt.onrender.com", // frontend domain
+      credentials: true,
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+    })
+  );
+  
+  // Handle preflight
+  app.options('*', cors({
+    origin: "https://mern-note-app-1-1cgt.onrender.com",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }));
 
 // Routes
 app.use("/api/auth", authRouter);
