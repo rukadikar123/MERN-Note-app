@@ -36,7 +36,13 @@ app.use(
     })
   );
   
- 
+  app.options('*', cors({
+    origin: 'https://mern-note-app-1-1cgt.onrender.com',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
+  
 
 // Routes
 app.use("/api/auth", authRouter);
