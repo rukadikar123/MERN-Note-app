@@ -43,7 +43,7 @@ function Home() {
     try {
       // Send a GET request to fetch all notes with authentication cookies
       const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/note/all`,
+        `${import.meta.env.VITE_BASE_URL}/api/note/all`,
         { withCredentials: true }
       );
 
@@ -61,7 +61,7 @@ function Home() {
 
   const getNoteinfo=async(noteId)=>{
     try {
-      const res=await axios.get(`${import.meta.env.VITE_BASE_URL}/note/getNote/${noteId}`, {withCredentials:true})
+      const res=await axios.get(`${import.meta.env.VITE_BASE_URL}/api/note/getNote/${noteId}`, {withCredentials:true})
       if(res.data.success===false){
         console.log(res.data);
         return;
@@ -89,7 +89,7 @@ function Home() {
     try {
       // Send a DELETE request to the backend API to remove the note
       const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/note/delete/${noteId}`,
+        `${import.meta.env.VITE_BASE_URL}/api/note/delete/${noteId}`,
         { withCredentials: true }
       );
 
@@ -112,7 +112,7 @@ function Home() {
     try {
       // Send a GET request to the backend API to search for notes
       const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/note/search`,
+        `${import.meta.env.VITE_BASE_URL}/api/note/search`,
         {
           params: { query }, // Pass the query as a parameter
           withCredentials: true,
@@ -147,7 +147,7 @@ function Home() {
       const res = await axios.put(
         `${
           import.meta.env.VITE_BASE_URL
-        }/note/update-note-pinned/${noteId}`,
+        }/api/note/update-note-pinned/${noteId}`,
         {
           isPinned: !noteData.isPinned, // Toggle pinned status
         },

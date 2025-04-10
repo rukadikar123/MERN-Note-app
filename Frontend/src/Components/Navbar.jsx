@@ -44,7 +44,7 @@ function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
 
       // API call to logout
       const res = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/auth/logout`,
+        `${import.meta.env.VITE_BASE_URL}/api/auth/logout`,
         { withCredentials: true }
       );
 

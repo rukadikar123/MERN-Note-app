@@ -21,7 +21,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
     try {
       // Sending an API request to update the note
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/note/edit/${noteId}`,
+        `${import.meta.env.VITE_BASE_URL}/api/note/edit/${noteId}`,
         { title, content, tags, bgColor, fontColor }, // Sending updated note details
         { withCredentials: true }
       );
@@ -45,7 +45,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
     try {
       // Sending a request to add a new note to the backend
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/note/add`,
+        `${import.meta.env.VITE_BASE_URL}/api/note/add`,
         { title, content, tags, bgColor, fontColor }, // Passing note details
         { withCredentials: true }
       );

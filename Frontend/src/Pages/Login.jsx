@@ -37,7 +37,7 @@ function Login() {
       dispatch(signinStart); // Dispatch action to indicate login process started
       // API request to login endpoint
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         { email, password },
         { withCredentials: true }
       );
