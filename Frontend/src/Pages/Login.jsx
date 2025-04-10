@@ -39,7 +39,9 @@ function Login() {
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true, headers: {
+          'Content-Type': 'application/json'
+        } }
       );
       if (response.data.success === false) {
         dispatch(signInFailure(response.data.message)); // Dispatch failure action with error message
