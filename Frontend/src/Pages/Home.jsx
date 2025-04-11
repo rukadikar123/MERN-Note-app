@@ -175,7 +175,7 @@ function Home() {
         handleClearSearch={handleClearSearch}
       />
       {/* Main Container for displaying notes and Modals*/}
-      <div className="notes-container mx-auto ">
+      <div className=" mx-auto ">
         {allNotes?.length > 0 ? (
           <div className="grid grid-cols-1 md:p-0 p-4 md:grid-cols-4 gap-6 mt-4 md:mt-8 ">
             {allNotes?.map((note) => (
