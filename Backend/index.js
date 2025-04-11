@@ -28,21 +28,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: "https://mern-note-app-1-1cgt.onrender.com",
+  origin: "https://mern-note-app-1-1cgt.onrender.com", // Your frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
   
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://mern-note-app-1-1cgt.onrender.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.sendStatus(200);
-});
-  
+
 
 // Routes
 app.use("/api/auth", authRouter);
