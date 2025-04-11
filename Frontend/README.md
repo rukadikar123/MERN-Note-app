@@ -56,7 +56,7 @@ This project is a **MERN Note App** frontend built with React, Vite, and Redux. 
 2. **Notes Management**:
    - Add, edit, delete, and view notes.
    - Pin/unpin notes for prioritization.
-   - Search notes by title or content.
+   - Search notes by title or content and tags.
 
 3. **UI/UX**:
    - Responsive design with Tailwind CSS.

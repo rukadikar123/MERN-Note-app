@@ -41,7 +41,7 @@ The application is deployed and accessible at:
 
 ### Prerequisites
 - **Node.js** (v16 or higher)
-- **MongoDB** (local or cloud instance)
+- **MongoDB** (cloud instance)
 - **npm** 
 
 ### Steps to Run the Project
@@ -90,7 +90,7 @@ The application is deployed and accessible at:
 #### Notes Management
 - Add, edit, delete, and view notes.
 - Pin/unpin notes for prioritization.
-- Search notes by title or content.
+- Search notes by title or content and tags.
 
 #### Responsive Design
 - Optimized for both desktop and mobile devices.
