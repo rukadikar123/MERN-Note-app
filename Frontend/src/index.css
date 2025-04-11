@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+.notes-container {
+  width: 100%;
+  max-width: 1200px; /* or your preferred max width */
+  margin: 0 auto;
+  padding: 0 1rem; /* consistent padding on all browsers */
+  box-sizing: border-box; /* ensures padding is included in width */
+}
+
+@supports (-ms-ime-align:auto) {
+  /* Edge-specific styles */
+  .notes-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 
 input::-ms-reveal,
 input::-ms-clear {
