@@ -90,7 +90,7 @@ This project is a **MERN Note App** frontend built with React, Vite, and Redux. 
    ```bash
    npm run dev
    ```
-5. Open the app in your browser at http://localhost:5173.
+5. Open the app in your browser at https://mern-note-app-1-1cgt.onrender.com
 
 
 ---
