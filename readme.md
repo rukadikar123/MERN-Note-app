@@ -29,6 +29,14 @@ The project is divided into two main parts:
 
 ---
 
+
+## Deployed URL
+
+The application is deployed and accessible at:  
+[deployed URL](https://mern-note-app-1-1cgt.onrender.com)
+
+---
+
 ## Setup and Installation
 
 ### Prerequisites
