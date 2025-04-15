@@ -28,7 +28,7 @@ function NoteCard({
         {/* Title and Pin Section */}
         <div className="flex items-center justify-between border-gray-400 border-b pb-2">
           <div className=" flex flex-col space-y-1">
-            <h1 className="md:text-2xl text-xl font-bold whitespace-nowrap overflow-hidden text-ellipsis">{title}</h1>
+            <h1 className="md:text-2xl text-xl font-bold truncate">{title}</h1>
             <p className="text-sm ">{moment(date).format("Do MMM YYYY")}</p>
           </div>
           {/* Pin and Unpin Button */}
