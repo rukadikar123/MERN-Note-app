@@ -35,7 +35,6 @@ app.use(cors({
 }));
 
 
-
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/note", noteRouter);
