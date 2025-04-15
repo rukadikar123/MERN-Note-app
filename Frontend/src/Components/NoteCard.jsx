@@ -26,9 +26,9 @@ function NoteCard({
         className="flex flex-col justify-around p-2 md:p-4 space-y-4 shadow-md border-2 w-full cursor-pointer hover:scale-[1.02] h-[30vh] hover:shadow-xl transition-all ease-in-out border-slate-400 rounded-xl"
       >
         {/* Title and Pin Section */}
-        <div className="flex items-center justify-between border-gray-400 border-b pb-2">
+        <div className="flex items-center justify-between  border-gray-400 border-b pb-2">
           <div className=" flex flex-col space-y-1">
-            <h1 className="md:text-2xl text-xl font-bold truncate">{title}</h1>
+            <h1 className="md:text-2xl text-xl font-bold truncate leading-none">{title}</h1>
             <p className="text-sm ">{moment(date).format("Do MMM YYYY")}</p>
           </div>
           {/* Pin and Unpin Button */}
