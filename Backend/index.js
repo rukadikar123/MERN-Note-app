@@ -34,7 +34,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/note", noteRouter);

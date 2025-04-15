@@ -5,7 +5,7 @@ function ProfileInfo({ onLogout, userInfo }) {
   return (
     <div className="md:flex md:flex-row  flex-col  gap-4 md:items-center">
       {/* User Avatar with Initials */}
-      <h1 className="md:text-xl text-md text-slate-700 mb-2 md:mb-0 shadow-inner md:h-[38px]  md:w-[38px] h-[22px] w-[22px] bg-slate-200 font-medium  rounded-full text-center pb-6 md:px-3 md:py-1">
+      <h1 className="md:text-xl text-md text-slate-700 mb-2 md:mb-0 shadow-inner md:h-[38px]  md:w-[38px] h-[22px] w-[22px] bg-slate-200 font-medium  rounded-full text-center  pb-6  md:py-1">
         {getInitials(userInfo?.userName)}
       </h1>
       {/* User Info & Logout Button */}
