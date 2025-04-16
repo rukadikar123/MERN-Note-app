@@ -98,5 +98,22 @@ The application is deployed and accessible at:
 #### State Management
 - Redux Toolkit for managing global state.
 
+## 📄 Project Documentation
+
+#### The following documents provide detailed insights into the design and planning of this project:
+
+[High-Level Design (HLD)](https://drive.google.com/file/d/1eE4GrCmObZ1ohGgQEmkRREu3FE6uxfQ3/view?usp=sharing)
+
+[Low-Level Design (LLD)](https://drive.google.com/file/d/1MvJhbhfS9i7XNKqTPv34bfVNJY3Y8RoD/view?usp=sharing)
+
+[Wireframe Diagrams](https://drive.google.com/file/d/1fPmsn9rPY7VR0tY_IEbx56M6iO2mWcIp/view?usp=sharing)
+
+[Architecture Doc](https://drive.google.com/file/d/1M57_N-uNYfaODDsbZG9S2geYlI87zQAQ/view?usp=sharing)
+
+[Report PPT](https://docs.google.com/presentation/d/1KmLq7uE-EtTlhN3BDdeL_bnFIC5KOjac/edit?usp=sharing&ouid=105430555376880772488&rtpof=true&sd=true)
+
+[LinkedIn Post](https://www.linkedin.com/feed/update/urn:li:activity:7317941171819802625/)
+
+
 #### Contributing
 - Contributions are welcome! Feel free to open issues or submit pull requests.
