@@ -89,7 +89,7 @@ export const login = async (req, res) => {
       httpOnly: true, // Cookie cannot be accessed by JavaScript (prevents XSS attacks)
       secure: true,
       sameSite: "None",
-      maxAge: 8 * 60 * 60 * 1000, // 4 hours
+      maxAge: 4 * 60 * 60 * 1000, // 4 hours
     });
 
     // Remove the password field from the user object before sending the response
