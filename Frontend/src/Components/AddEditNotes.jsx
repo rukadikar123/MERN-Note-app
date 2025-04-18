@@ -38,7 +38,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
       toast.error("changes required");
       setError(error.message);
     }
-  },[noteData._id,title, content, tags, bgColor, fontColor, getAllNotes, onClose])
+  },[noteData,title, content, tags, bgColor, fontColor, getAllNotes, onClose])
 
   //add note
   const addNewNote = useCallback(async () => {
