@@ -84,7 +84,7 @@ function Home() {
   // delete note
   const deleteNote = useCallback(async (data,e) => {
     e.stopPropagation();
-    const noteId = data._id; //Extract the note ID from the data object
+    const noteId = data?._id; //Extract the note ID from the data object
 
     try {
       // Send a DELETE request to the backend API to remove the note

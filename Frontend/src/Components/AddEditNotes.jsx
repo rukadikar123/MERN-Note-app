@@ -16,7 +16,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
 
   // edit Note
   const editNote = useCallback(async () => {
-    const noteId = noteData._id; // Extracting the note ID
+    const noteId = noteData?._id; // Extracting the note ID
 
     try {
       // Sending an API request to update the note
