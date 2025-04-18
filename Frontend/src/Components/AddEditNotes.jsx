@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 import TagInput from "./TagInput";
 import axios from "axios";
@@ -15,7 +15,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
   const [fontColorInput, setFontColorInput] = useState(""); // Temporary state for user input font color
 
   // edit Note
-  const editNote = async () => {
+  const editNote = useCallback(async () => {
     const noteId = noteData._id; // Extracting the note ID
 
     try {
@@ -31,17 +31,17 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
         return;
       }
       toast.success(res.data.message);
-      getAllNotes(); // Refresh the list of notes
+      await getAllNotes(); // Refresh the list of notes
       onClose(); // Close the edit modal or form
     } catch (error) {
       console.log(error.message);
       toast.error("changes required");
       setError(error.message);
     }
-  };
+  },[noteData._id,title, content, tags, bgColor, fontColor, getAllNotes, onClose])
 
   //add note
-  const addNewNote = async () => {
+  const addNewNote = useCallback(async () => {
     try {
       // Sending a request to add a new note to the backend
       const res = await axios.post(
@@ -57,14 +57,14 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
         return;
       }
       toast.success(res.data.message);
-      getAllNotes(); // Refresh the list of notes
+      await getAllNotes(); // Refresh the list of notes
       onClose();
     } catch (error) {
       console.log(error.message);
       toast.error("all fields required");
       setError(error.message);
     }
-  };
+  },[title, content, tags, bgColor, fontColor, getAllNotes, onClose])
 
   // Function to handle adding or editing a note
   const handleAddNote = () => {

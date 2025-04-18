@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import NoteCard from "../Components/NoteCard";
 import Navbar from "../Components/Navbar";
 import { FaPlus } from "react-icons/fa";
@@ -39,7 +39,7 @@ function Home() {
   }, []);
 
   // Get All Notes
-  const getAllNotes = async () => {
+  const getAllNotes = useCallback(async () => {
     try {
       // Send a GET request to fetch all notes with authentication cookies
       const res = await axios.get(
@@ -57,7 +57,7 @@ function Home() {
     } catch (error) {
       console.log(error.message);
     }
-  };
+  },[])
 
   const getNoteinfo=async(noteId)=>{
     try {
@@ -82,7 +82,7 @@ function Home() {
   };
 
   // delete note
-  const deleteNote = async (data,e) => {
+  const deleteNote = useCallback(async (data,e) => {
     e.stopPropagation();
     const noteId = data._id; //Extract the note ID from the data object
 
@@ -101,11 +101,11 @@ function Home() {
       toast.success(res.data.message);
       localStorage.removeItem("noteInfo")
       // Refresh the list of notes after deletion
-      getAllNotes();
+      await getAllNotes();
     } catch (error) {
       toast.error(error.message);
     }
-  };
+  },[getAllNotes])
 
   // Handle search
   const onSearchNote = async (query) => {
