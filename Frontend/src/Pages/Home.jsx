@@ -13,8 +13,6 @@ function Home() {
   const [userInfo, setUserInfo] = useState(null); // State to store user info
   const [allNotes, setAllNotes] = useState([]); // State to store all notes
   const [isSearch, setIsSearch] = useState(false);
-  
-
 
   // State to manage modal for adding/editing notes
   const [openAddEditModal, setOpenAddEditModal] = useState({
@@ -57,55 +55,60 @@ function Home() {
     } catch (error) {
       console.log(error.message);
     }
-  },[])
+  }, []);
 
-  const getNoteinfo=async(noteId)=>{
+  const getNoteinfo = async (noteId) => {
     try {
-      const res=await axios.get(`${import.meta.env.VITE_BASE_URL}/api/note/getNote/${noteId}`, {withCredentials:true})
-      if(res.data.success===false){
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/note/getNote/${noteId}`,
+        { withCredentials: true }
+      );
+      if (res.data.success === false) {
         console.log(res.data);
         return;
       }
-      localStorage.setItem("noteInfo",JSON.stringify(res?.data?.note))
-      navigate('/noteInfo')
-
+      localStorage.setItem("noteInfo", JSON.stringify(res?.data?.note));
+      navigate("/noteInfo");
     } catch (error) {
       console.log(error.message);
     }
-  }  
+  };
 
   // Handle edit
-  const handleEdit = (noteDetails,e) => {
+  const handleEdit = (noteDetails, e) => {
     e.stopPropagation();
     // Update state to open the modal for editing a note
     setOpenAddEditModal({ isShow: true, type: "edit", data: noteDetails });
   };
 
   // delete note
-  const deleteNote = useCallback(async (data,e) => {
-    e.stopPropagation();
-    const noteId = data?._id; //Extract the note ID from the data object
+  const deleteNote = useCallback(
+    async (data, e) => {
+      e.stopPropagation();
+      const noteId = data?._id; //Extract the note ID from the data object
 
-    try {
-      // Send a DELETE request to the backend API to remove the note
-      const res = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/api/note/delete/${noteId}`,
-        { withCredentials: true }
-      );
+      try {
+        // Send a DELETE request to the backend API to remove the note
+        const res = await axios.delete(
+          `${import.meta.env.VITE_BASE_URL}/api/note/delete/${noteId}`,
+          { withCredentials: true }
+        );
 
-      if (res.data.success === false) {
-        toast.error(res.data.message);
-        return;
+        if (res.data.success === false) {
+          toast.error(res.data.message);
+          return;
+        }
+        // Show a success message when the note is successfully deleted
+        toast.success(res.data.message);
+        localStorage.removeItem("noteInfo");
+        // Refresh the list of notes after deletion
+        await getAllNotes();
+      } catch (error) {
+        toast.error(error.message);
       }
-      // Show a success message when the note is successfully deleted
-      toast.success(res.data.message);
-      localStorage.removeItem("noteInfo")
-      // Refresh the list of notes after deletion
-      await getAllNotes();
-    } catch (error) {
-      toast.error(error.message);
-    }
-  },[getAllNotes])
+    },
+    [getAllNotes]
+  );
 
   // Handle search
   const onSearchNote = async (query) => {
@@ -138,7 +141,7 @@ function Home() {
   };
 
   // Handle isPinned Updates
-  const updateIsPinned = async (noteData,e) => {
+  const updateIsPinned = async (noteData, e) => {
     e.stopPropagation();
     const noteId = noteData._id;
 
@@ -185,18 +188,18 @@ function Home() {
                 date={note.updatedAt}
                 content={note.content}
                 tags={note.tags}
-                onClick={()=>getNoteinfo(note._id)}
+                onClick={() => getNoteinfo(note._id)}
                 bgColor={note.bgColor}
                 fontColor={note.fontColor}
                 isPinned={note.isPinned}
                 onEdit={(e) => {
-                  handleEdit(note,e);
+                  handleEdit(note, e);
                 }}
                 onDelete={(e) => {
-                  deleteNote(note,e);
+                  deleteNote(note, e);
                 }}
                 onPinNote={(e) => {
-                  updateIsPinned(note,e);
+                  updateIsPinned(note, e);
                 }}
               />
             ))}

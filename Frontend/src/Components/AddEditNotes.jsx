@@ -15,7 +15,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
   const [fontColorInput, setFontColorInput] = useState(""); // Temporary state for user input font color
 
   // edit Note
-  const editNote = useCallback(async () => {
+  const editNote = async () => {
     const noteId = noteData?._id; // Extracting the note ID
 
     try {
@@ -38,10 +38,10 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
       toast.error("changes required");
       setError(error.message);
     }
-  },[noteData,title, content, tags, bgColor, fontColor, getAllNotes, onClose])
+  }
 
   //add note
-  const addNewNote = useCallback(async () => {
+  const addNewNote = async () => {
     try {
       // Sending a request to add a new note to the backend
       const res = await axios.post(
@@ -64,7 +64,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
       toast.error("all fields required");
       setError(error.message);
     }
-  },[title, content, tags, bgColor, fontColor, getAllNotes, onClose])
+  };
 
   // Function to handle adding or editing a note
   const handleAddNote = () => {
