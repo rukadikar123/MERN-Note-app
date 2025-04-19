@@ -225,7 +225,7 @@ function Home() {
       {/* Modal for Adding/Editing Notes */}
       <Modal
         isOpen={openAddEditModal.isShow}
-        onRequestClose={() => {}}
+        onRequestClose={() => setOpenAddEditModal({ isShow: false, type: "add", data: null })}
         className="bg-white md:h-[83vh] h-[70vh] mx-auto mt-14 p-4 overflow-auto border shadow-lg border-slate-400 rounded-lg w-[85%] md:w-[60%] transition-all duration-300 ease-in-out"
         contentLabel=""
       >
