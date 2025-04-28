@@ -16,23 +16,29 @@ function NoteCard({
   onPinNote,
   bgColor,
   fontColor,
-  onClick
+  onClick,
 }) {
   return (
     <>
       {/* Note Card Container */}
-      <div onClick={onClick}
+      <div
+        onClick={onClick}
         style={{ backgroundColor: bgColor, color: fontColor }}
         className="flex flex-col justify-around p-2 md:p-4 space-y-4 shadow-md border-2 w-full cursor-pointer hover:scale-[1.02] h-[30vh] hover:shadow-xl transition-all ease-in-out border-slate-400 rounded-xl"
       >
         {/* Title and Pin Section */}
         <div className="flex items-center justify-between w-full border-gray-400 border-b pb-2">
           <div className=" flex flex-col space-y-1">
-            <h1 className="md:text-2xl text-xl font-bold truncate max-w-[180px] overflow-hidden">{title}</h1>
+            <h1 className="md:text-2xl text-xl font-bold truncate max-w-[180px] overflow-hidden">
+              {title}
+            </h1>
             <p className="text-sm ">{moment(date).format("Do MMM YYYY")}</p>
           </div>
           {/* Pin and Unpin Button */}
-          <div className="text-gray-500 hover:text-black transition duration-200" onClick={onPinNote}>
+          <div
+            className="text-gray-500 hover:text-black transition duration-200"
+            onClick={onPinNote}
+          >
             {isPinned ? (
               <RiUnpinFill size={26} />
             ) : (
@@ -50,8 +56,16 @@ function NoteCard({
           <p className="text-sm ">{tags?.map((tag) => ` #${tag} `)}</p>
           {/* Action Buttons: Edit & Delete */}
           <div className="flex gap-4">
-            <FaEdit onClick={onEdit} size={22} className="hover:text-blue-400 text-blue-700 transition duration-150" />
-            <MdDelete onClick={onDelete} size={24} className="hover:text-red-600 text-red-400 transition duration-150" />
+            <FaEdit
+              onClick={onEdit}
+              size={22}
+              className="hover:text-blue-400 text-blue-700 transition duration-150"
+            />
+            <MdDelete
+              onClick={onDelete}
+              size={24}
+              className="hover:text-red-600 text-red-400 transition duration-150"
+            />
           </div>
         </div>
       </div>

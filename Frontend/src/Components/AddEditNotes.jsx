@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, {  useState } from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 import TagInput from "./TagInput";
 import axios from "axios";
@@ -32,7 +32,7 @@ function AddEditNotes({ onClose, noteData, type, getAllNotes }) {
       }
       toast.success(res.data.message);
       await getAllNotes(); // Refresh the list of notes
-      onClose(); // Close the edit modal or form
+      onClose(); // Close the edit modal
     } catch (error) {
       console.log(error.message);
       toast.error("changes required");

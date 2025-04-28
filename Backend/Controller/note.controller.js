@@ -152,7 +152,7 @@ export const updateNotePinned = async (req, res) => {
     if (!note) {
       throw new Error("Note not found!");
     }
-
+    
     if (req.user.id !== note.userId) {
       return res.status(400).json({
         success: false,
@@ -207,7 +207,7 @@ export const searchNote = async (req, res) => {
   try {
     // Find notes that match the search query in either the 'title' or 'content' field
     const matchingNotes = await Note.find({
-      userId: req.user.id,
+      userId: req.user.id,  
       $or: [
         { title: { $regex: new RegExp(query, "i") } },
         { content: { $regex: new RegExp(query, "i") } },
