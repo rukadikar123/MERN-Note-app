@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import ProfileInfo from "./ProfileInfo";
@@ -12,10 +12,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { IoMdMenu } from "react-icons/io";
 import { MdClose } from "react-icons/md";
+import { useDebounce } from "../utils/useDebounce";
 
 function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
   const [showMenu, setShowMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for search input
+  const debouncedSearch=useDebounce(searchQuery,1000)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,11 +28,15 @@ function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
   };
 
   // Executes search when triggere
-  const handlesearch = () => {
-    if (searchQuery) {
-      onSearchNote(searchQuery);
+ 
+useEffect(() => {
+    if (debouncedSearch) {
+      onSearchNote(debouncedSearch);
     }
-  };
+
+}, [debouncedSearch])
+
+
   // Clears search input and triggers parent function to reset search results
   const onClearSearch = () => {
     setSearchQuery("");
@@ -79,7 +85,6 @@ function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
         <SearchBar
           value={searchQuery}
           handleChange={handleChange}
-          handlesearch={handlesearch}
           onClearSearch={onClearSearch}
         />
         <div className="md:hidden block">
