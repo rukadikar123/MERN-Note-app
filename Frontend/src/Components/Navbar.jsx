@@ -32,6 +32,8 @@ function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
 useEffect(() => {
     if (debouncedSearch) {
       onSearchNote(debouncedSearch);
+    }else{
+      onClearSearch()
     }
 
 }, [debouncedSearch])
