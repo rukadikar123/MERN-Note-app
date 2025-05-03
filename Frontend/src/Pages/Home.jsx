@@ -130,7 +130,7 @@ function Home() {
       setAllNotes(res.data.notes);
       setIsSearch(true);
     } catch (error) {
-      toast.error(error.message);
+      // toast.error(error.message);
     }
   };
 

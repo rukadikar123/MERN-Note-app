@@ -17,7 +17,7 @@ import { useDebounce } from "../utils/useDebounce";
 function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
   const [showMenu, setShowMenu] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for search input
-  const debouncedSearch=useDebounce(searchQuery,1000)
+  const debouncedSearch=useDebounce(searchQuery,500)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
