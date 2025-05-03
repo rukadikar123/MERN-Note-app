@@ -30,8 +30,9 @@ function Navbar({ userInfo, handleClearSearch, onSearchNote }) {
   // Executes search when triggere
  
 useEffect(() => {
-    if (debouncedSearch) {
-      onSearchNote(debouncedSearch);
+    const trimmedSearch=debouncedSearch.trim()
+    if (trimmedSearch) {
+      onSearchNote(trimmedSearch);
     }else{
       onClearSearch()
     }
