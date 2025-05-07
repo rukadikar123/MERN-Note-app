@@ -1,13 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { lazy, Suspense,useCallback, useEffect, useState } from "react";
 import NoteCard from "../Components/NoteCard";
 import Navbar from "../Components/Navbar";
 import { FaPlus } from "react-icons/fa";
 import Modal from "react-modal";
-import AddEditNotes from "../Components/AddEditNotes";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+const AddEditNotes = lazy(() => import("../Components/AddEditNotes"));
 
 function Home() {
   const [userInfo, setUserInfo] = useState(null); // State to store user info
@@ -230,6 +231,7 @@ function Home() {
         className="bg-white md:h-[83vh] h-[70vh] mx-auto mt-14 p-4 overflow-auto border shadow-lg border-slate-400 rounded-lg w-[85%] md:w-[60%] transition-all duration-300 ease-in-out"
         contentLabel=""
       >
+      <Suspense fallback={<div>Loading...</div>}>
         <AddEditNotes
           onClose={() =>
             setOpenAddEditModal({ isShow: false, type: "add", data: null })
@@ -238,6 +240,7 @@ function Home() {
           type={openAddEditModal.type}
           getAllNotes={getAllNotes}
         />
+        </Suspense>
       </Modal>
     </>
   );
