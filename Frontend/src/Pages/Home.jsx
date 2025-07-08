@@ -35,7 +35,7 @@ function Home() {
       setUserInfo(currentUser);
       getAllNotes();
     }
-  }, []);
+  }, [currentUser, navigate]);
 
   // Get All Notes
   const getAllNotes = useCallback(async () => {
@@ -52,7 +52,7 @@ function Home() {
         return;
       }
       // Update state with fetched notes
-      setAllNotes(res.data.notes);
+      setAllNotes(res?.data?.notes);
     } catch (error) {
       console.log(error.message);
     }
@@ -128,7 +128,7 @@ function Home() {
         return;
       }
       // Update the notes state with the search results
-      setAllNotes(res.data.notes);
+      setAllNotes(res?.data?.notes);
       setIsSearch(true);
     } catch (error) {
       console.log(error.message);

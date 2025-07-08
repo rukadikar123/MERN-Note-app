@@ -6,8 +6,12 @@ export const signup = async (req, res) => {
   // Destructure the user input (userName, email, and password) from the request body
   const { userName, email, password } = req.body;
 
-  if (!userName || !email || !password) {
-    throw new Error("All fields required");
+  
+  if([userName,email,password].some((elem)=>elem==="")){
+        return res.status(400).json({
+        success: false,
+        message: "All fields required",
+      });
   }
 
   try {
@@ -56,7 +60,10 @@ export const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new Error("All fields required");
+    return res.status(400).json({
+    success: false,
+    message: "Email and password are required",
+  });
   }
 
   try {

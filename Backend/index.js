@@ -23,16 +23,18 @@ mongoose
   });
 
 // Middleware setup
+app.use(
+  cors({
+    origin: "https://mern-note-app-1-1cgt.onrender.com", // Your frontend URL
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-app.use(cors({
-  origin: "https://mern-note-app-1-1cgt.onrender.com", // Your frontend URL
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 // Routes
 app.use("/api/auth", authRouter);

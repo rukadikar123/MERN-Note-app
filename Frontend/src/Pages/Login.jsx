@@ -34,7 +34,7 @@ function Login() {
 
     // login api
     try {
-      dispatch(signinStart); // Dispatch action to indicate login process started
+      dispatch(signinStart()); // Dispatch action to indicate login process started
       // API request to login endpoint
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
@@ -43,12 +43,12 @@ function Login() {
           'Content-Type': 'application/json'
         } }
       );
-      if (response.data.success === false) {
+      if (response?.data?.success === false) {
         dispatch(signInFailure(response.data.message)); // Dispatch failure action with error message
         toast.error(response.data.message); // Show error notification
       }
       toast.success(response.data.message);
-      dispatch(signInSuccess(response.data.user)); // Dispatch success action with user data
+      dispatch(signInSuccess(response?.data?.user)); // Dispatch success action with user data
 
       navigate("/"); // Redirect user to home page after successful login
     } catch (error) {

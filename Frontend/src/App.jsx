@@ -11,7 +11,7 @@ import NoteInfo from "./Pages/NoteInfo";
 
 function App() {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state?.user);
 
   
 
